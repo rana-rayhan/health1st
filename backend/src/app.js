@@ -35,10 +35,6 @@ app.use(xssClean());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.get("/test", (req, res) => {
-  res.status(200).json({ message: "Hello...." });
-});
 //
 //
 // use all route
