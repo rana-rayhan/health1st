@@ -17,9 +17,7 @@ const UserBlog = ({ post }) => {
 
   const handleDeletePost = async (id) => {
     try {
-      await axios.delete(
-        `https://health1st.onrender.com/api/post/delete/${id}`
-      );
+      await axios.delete(`/api/post/delete/${id}`);
       dispatch(deleteUserPost(id));
       dispatch(deletePost(id));
     } catch (error) {
