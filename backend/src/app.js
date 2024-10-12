@@ -11,6 +11,7 @@ const { errorResponse } = require("./controllers/responseController");
 const authRouter = require("./routers/authRouter");
 const postRouter = require("./routers/postRoute");
 const commentRouter = require("./routers/commentRouter");
+const { clientUrl } = require("./secret");
 //
 //
 // express app
@@ -28,9 +29,14 @@ const limiter = rateLimit({
 //
 //
 // Midlewares
+const corsOptions = {
+  origin: clientUrl,
+  credentials: true,
+};
+
 app.use(cookieParser());
 app.use(limiter);
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(xssClean());
 app.use(morgan("dev"));
 app.use(express.json());

@@ -4,6 +4,7 @@ import { X, Menu } from "lucide-react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addLoggedUser } from "../toolkit/userSlice";
+import { baseUrl } from "../app/apiEndpoint";
 
 const NavLinks = ({ mobile }) => (
   <div className={`${mobile ? "flex flex-col space-y-2" : "flex space-x-4"}`}>
@@ -34,8 +35,10 @@ const NavBar = () => {
 
   const handleLogout = async () => {
     try {
+      await axios.get(`${baseUrl}/api/auth/logout`, {
+        withCredentials: true,
+      });
       localStorage.removeItem("loggedUser");
-      await axios.post("/api/auth/logout");
       dispatch(addLoggedUser(false));
       navigate("/login");
     } catch (error) {

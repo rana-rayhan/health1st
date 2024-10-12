@@ -18,7 +18,7 @@ authRouter.post(
   isLoggedOut,
   handleLogin
 );
-authRouter.post("/logout", isLoggedIn, handleLogout);
+authRouter.get("/logout", isLoggedIn, handleLogout);
 
 authRouter.get("/refresh-token", handleRefreshToken);
 authRouter.get("/protected", handleProtectedRoute);

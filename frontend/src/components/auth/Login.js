@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addLoggedUser } from "../../toolkit/userSlice";
+import { baseUrl } from "../../app/apiEndpoint";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Login = () => {
     setIsSigningIn(true);
     try {
       // Simulating an API call
-      const res = await axios.post("/api/auth/login", formData, {
+      const res = await axios.post(`${baseUrl}/api/auth/login`, formData, {
         withCredentials: true,
       });
       localStorage.setItem("loggedUser", JSON.stringify(res.data.payload));

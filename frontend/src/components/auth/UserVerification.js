@@ -2,6 +2,7 @@ import axios from "axios";
 import { Verified } from "lucide-react";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { baseUrl } from "../../app/apiEndpoint";
 
 const UserVerification = () => {
   const { token } = useParams("");
@@ -11,7 +12,7 @@ const UserVerification = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "/api/users/verify",
+        `${baseUrl}/api/users/verify`,
         { token },
         { withCredentials: true }
       );

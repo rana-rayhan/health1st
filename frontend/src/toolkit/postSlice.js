@@ -1,9 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseUrl } from "../app/apiEndpoint";
 
 // Dispatch fetchPosts method to get data
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-  const res = await axios.get("/api/post");
+  const res = await axios.get(`${baseUrl}/api/post`, {
+    withCredentials: true,
+  });
   return res.data;
 });
 
