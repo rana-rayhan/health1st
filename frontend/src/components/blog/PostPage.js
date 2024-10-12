@@ -42,10 +42,13 @@ const PostPage = () => {
     if (isLoggedIn && !isSubmittingComment && newComment.trim()) {
       setIsSubmittingComment(true);
       try {
-        const res = await axios.post("/api/comment/create", {
-          content: newComment,
-          postId: currentPost._id,
-        });
+        const res = await axios.post(
+          "https://health1st.onrender.com/api/comment/create",
+          {
+            content: newComment,
+            postId: currentPost._id,
+          }
+        );
 
         if (res?.data?.payload) {
           const updatedComments = [...currentPost.comments, res.data.payload];
@@ -76,7 +79,9 @@ const PostPage = () => {
   const handleDeleteComment = async (commentId) => {
     if (isLoggedIn) {
       try {
-        await axios.delete(`/api/comment/delete/${commentId}`);
+        await axios.delete(
+          `https://health1st.onrender.com/api/comment/delete/${commentId}`
+        );
 
         // Update the current post's comments state
         setCurrentPost((prevPost) => ({

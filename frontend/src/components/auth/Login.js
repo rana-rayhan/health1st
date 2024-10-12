@@ -20,7 +20,10 @@ const Login = () => {
     setIsSigningIn(true);
     try {
       // Simulating an API call
-      const res = await axios.post("/api/auth/login", formData);
+      const res = await axios.post(
+        "https://health1st.onrender.com/api/auth/login",
+        formData
+      );
       localStorage.setItem("loggedUser", JSON.stringify(res.data.payload));
       // Clear the form
       setFormData({ email: "", password: "" });

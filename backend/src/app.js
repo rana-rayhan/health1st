@@ -30,7 +30,12 @@ const limiter = rateLimit({
 // Midlewares
 app.use(cookieParser());
 app.use(limiter);
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://health1st.netlify.app/",
+    credentials: true,
+  })
+);
 app.use(xssClean());
 app.use(morgan("dev"));
 app.use(express.json());
