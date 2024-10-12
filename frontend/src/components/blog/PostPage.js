@@ -43,10 +43,14 @@ const PostPage = () => {
     if (isLoggedIn && !isSubmittingComment && newComment.trim()) {
       setIsSubmittingComment(true);
       try {
-        const res = await axios.post(`${baseUrl}/api/comment/create`, {
-          content: newComment,
-          postId: currentPost._id,
-        });
+        const res = await axios.post(
+          `${baseUrl}/api/comment/create`,
+          {
+            content: newComment,
+            postId: currentPost._id,
+          },
+          { withCredentials: true }
+        );
 
         if (res?.data?.payload) {
           const updatedComments = [...currentPost.comments, res.data.payload];
@@ -77,7 +81,9 @@ const PostPage = () => {
   const handleDeleteComment = async (commentId) => {
     if (isLoggedIn) {
       try {
-        await axios.delete(`${baseUrl}/api/comment/delete/${commentId}`);
+        await axios.delete(`${baseUrl}/api/comment/delete/${commentId}`, {
+          withCredentials: true,
+        });
 
         // Update the current post's comments state
         setCurrentPost((prevPost) => ({
