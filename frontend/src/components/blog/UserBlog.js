@@ -18,7 +18,9 @@ const UserBlog = ({ post }) => {
 
   const handleDeletePost = async (id) => {
     try {
-      await axios.delete(`${baseUrl}/api/post/delete/${id}`);
+      await axios.delete(`${baseUrl}/api/post/delete/${id}`, {
+        withCredentials: true,
+      });
       dispatch(deleteUserPost(id));
       dispatch(deletePost(id));
     } catch (error) {

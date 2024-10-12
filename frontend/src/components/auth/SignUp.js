@@ -19,7 +19,9 @@ const Signup = () => {
     setIsSigningUp(true);
     try {
       // Simulating an API call
-      await axios.post(`${baseUrl}/api/users/process-register`, formData);
+      await axios.post(`${baseUrl}/api/users/process-register`, formData, {
+        withCredentials: true,
+      });
       toast.success("Registration successful. Please login!");
       // Clear the form
       setFormData({ name: "", email: "", password: "", phone: "" });
