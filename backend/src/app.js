@@ -18,24 +18,27 @@ const app = express();
 //
 //
 //
-// const limiter = rateLimit({
-//   windowMs: 1 * 60 * 1000, // 1 minutes
-//   max: 100, // Limit each IP to 5 requests per `window` (here, per 1 minutes)
-//   message: "Too many requests from this IP, please try again later",
-//   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-//   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-// });
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minutes
+  max: 100, // Limit each IP to 5 requests per `window` (here, per 1 minutes)
+  message: "Too many requests from this IP, please try again later",
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
 //
 //
 // Midlewares
-// app.set("trust proxy", true);
 app.use(cookieParser());
-// app.use(limiter);
+app.use(limiter);
 app.use(cors());
 app.use(xssClean());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get("/test", (req, res) => {
+  res.status(200).json({ message: "Hello...." });
+});
 //
 //
 // use all route
