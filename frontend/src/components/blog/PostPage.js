@@ -9,6 +9,7 @@ import {
   updatePostComments,
 } from "../../toolkit/postSlice";
 import LoadingState from "../LoadingState";
+import { baseUrl } from "../../app/apiEndpoint";
 
 const PostPage = () => {
   const { state: postState } = useLocation();
@@ -42,7 +43,7 @@ const PostPage = () => {
     if (isLoggedIn && !isSubmittingComment && newComment.trim()) {
       setIsSubmittingComment(true);
       try {
-        const res = await axios.post("/api/comment/create", {
+        const res = await axios.post(`${baseUrl}/api/comment/create`, {
           content: newComment,
           postId: currentPost._id,
         });
@@ -76,7 +77,7 @@ const PostPage = () => {
   const handleDeleteComment = async (commentId) => {
     if (isLoggedIn) {
       try {
-        await axios.delete(`/api/comment/delete/${commentId}`);
+        await axios.delete(`${baseUrl}/api/comment/delete/${commentId}`);
 
         // Update the current post's comments state
         setCurrentPost((prevPost) => ({

@@ -3,6 +3,7 @@ import { Mail, Lock, LogIn, Edit2, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { baseUrl } from "../../app/apiEndpoint";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ const Signup = () => {
     setIsSigningUp(true);
     try {
       // Simulating an API call
-      await axios.post("/api/users/process-register", formData);
+      await axios.post(`${baseUrl}/api/users/process-register`, formData);
       toast.success("Registration successful. Please login!");
       // Clear the form
       setFormData({ name: "", email: "", password: "", phone: "" });

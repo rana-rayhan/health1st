@@ -8,6 +8,7 @@ import axios from "axios";
 import { addPost } from "../../toolkit/postSlice";
 import { addUserPost } from "../../toolkit/userSlice";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../../app/apiEndpoint";
 
 const CreateBlog = () => {
   const [isLoadingPost, setLoading] = useState(false);
@@ -33,7 +34,7 @@ const CreateBlog = () => {
 
     try {
       console.log(formData);
-      const res = await axios.post("/api/post/create", formData, {
+      const res = await axios.post(`${baseUrl}/api/post/create`, formData, {
         withCredentials: true,
       });
 

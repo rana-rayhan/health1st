@@ -11,13 +11,14 @@ import { useDispatch } from "react-redux";
 import { deleteUserPost } from "../../toolkit/userSlice";
 import axios from "axios";
 import { deletePost } from "../../toolkit/postSlice";
+import { baseUrl } from "../../app/apiEndpoint";
 
 const UserBlog = ({ post }) => {
   const dispatch = useDispatch();
 
   const handleDeletePost = async (id) => {
     try {
-      await axios.delete(`/api/post/delete/${id}`);
+      await axios.delete(`${baseUrl}/api/post/delete/${id}`);
       dispatch(deleteUserPost(id));
       dispatch(deletePost(id));
     } catch (error) {
