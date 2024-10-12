@@ -17,7 +17,9 @@ const UserBlog = ({ post }) => {
 
   const handleDeletePost = async (id) => {
     try {
-      await axios.delete(`/api/post/delete/${id}`);
+      await axios.delete(
+        `https://health1st.onrender.com/api/post/delete/${id}`
+      );
       dispatch(deleteUserPost(id));
       dispatch(deletePost(id));
     } catch (error) {
@@ -46,7 +48,7 @@ const UserBlog = ({ post }) => {
             {post.diseases.name}
           </span>
           {/* <h1 className=" text-white text-3xl">Hello</h1> */}
-          <Link 
+          <Link
             to={`/blog/${post.title}`}
             state={post}
             className="flex items-center text-gray-500"

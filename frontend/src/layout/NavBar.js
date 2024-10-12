@@ -34,7 +34,7 @@ const NavBar = () => {
 
   const handleLogout = async () => {
     localStorage.removeItem("loggedUser");
-    await axios.post("/api/auth/logout");
+    await axios.post("https://health1st.onrender.com/api/auth/logout");
     dispatch(addLoggedUser(false));
     navigate("/login");
   };

@@ -18,7 +18,10 @@ const Signup = () => {
     setIsSigningUp(true);
     try {
       // Simulating an API call
-      await axios.post("/api/users/process-register", formData);
+      await axios.post(
+        "https://health1st.onrender.com/api/users/process-register",
+        formData
+      );
       toast.success("Registration successful. Please login!");
       // Clear the form
       setFormData({ name: "", email: "", password: "", phone: "" });

@@ -33,9 +33,13 @@ const CreateBlog = () => {
 
     try {
       console.log(formData);
-      const res = await axios.post("/api/post/create", formData, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        "https://health1st.onrender.com/api/post/create",
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
 
       dispatch(addPost(res?.data?.post));
       dispatch(addUserPost(res?.data?.post));
