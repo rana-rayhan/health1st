@@ -3,9 +3,7 @@ import axios from "axios";
 
 // Dispatch fetchPosts method to get data
 export const fetchUserPosts = createAsyncThunk("users/fetchUsers", async () => {
-  const res = await axios.get(
-    "https://health1st.onrender.com/api/post/user-post"
-  );
+  const res = await axios.get("/api/post/user-post");
   return res.data;
 });
 

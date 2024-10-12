@@ -11,7 +11,7 @@ const UserVerification = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://health1st.onrender.com/api/users/verify",
+        "/api/users/verify",
         { token },
         { withCredentials: true }
       );
